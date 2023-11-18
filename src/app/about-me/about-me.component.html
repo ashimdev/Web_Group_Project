@@ -1,0 +1,23 @@
+<div id="aboutMe" class="px-4 lg:px-8 mx-0 lg:mx-8">
+    <div class="grid grid-nogutter surface-section text-800 about-us-main-div">
+        <div
+            class="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center"
+        >
+            <section>
+                <div class="text-xl text-primary font-bold mb-3">
+                    <p [innerHTML]="IntroText"></p>
+                </div>
+                <p class="mt-0 mb-4 text-700 line-height-3 description-justify-text">
+                    {{ DescriptionText }}
+                </p>
+            </section>
+        </div>
+        <div class="col-12 md:col-6 overflow-hidden">
+            <img
+                src="assets//layout/images/about-us.png"
+                alt="Image"
+                class="md:ml-auto block md:h-full about-us-image"
+            />
+        </div>
+    </div>
+</div>

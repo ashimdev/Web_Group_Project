@@ -1,0 +1,139 @@
+<div class="grid">
+    <div class="col-12 md:col-6">
+        <div class="card p-fluid">
+            <h5>Contact</h5>
+            <form [formGroup]="ContactForm" (ngSubmit)="OnClickSubmitForm()">
+                <div class="field grid">
+                    <label htmlFor="name3" class="col-12 mb-2 md:col-2 md:mb-0"
+                        >Name</label
+                    >
+                    <div class="col-12 md:col-10">
+                        <input
+                            pInputText
+                            id="name3"
+                            type="text"
+                            [ngClass]="{
+                                'ng-invalid ng-dirty': IsInvalid('name')
+                            }"
+                            formControlName="name"
+                        />
+                        <div *ngIf="IsInvalid('name')" class="error-message">
+                            Please enter a valid name.
+                        </div>
+                    </div>
+                </div>
+                <div class="field grid">
+                    <label
+                        htmlFor="contact3"
+                        class="col-12 mb-2 md:col-2 md:mb-0"
+                        >Contact</label
+                    >
+                    <div class="col-12 md:col-10">
+                        <p-inputMask
+                            mask="(999)-999-9999"
+                            id="contact3"
+                            placeholder="(999)-999-9999"
+                            [ngClass]="{
+                                'ng-invalid ng-dirty': IsInvalid('contact')
+                            }"
+                            formControlName="contact"
+                        ></p-inputMask>
+
+                        <div *ngIf="IsInvalid('contact')" class="error-message">
+                            Please enter a valid contact number.
+                        </div>
+                    </div>
+                </div>
+                <div class="field grid">
+                    <label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0"
+                        >Email</label
+                    >
+                    <div class="col-12 md:col-10">
+                        <input
+                            pInputText
+                            id="email3"
+                            type="text"
+                            [ngClass]="{
+                                'ng-invalid ng-dirty': IsInvalid('email')
+                            }"
+                            formControlName="email"
+                        />
+                        <div *ngIf="IsInvalid('email')" class="error-message">
+                            Please enter a valid email address.
+                        </div>
+                    </div>
+                </div>
+                <div class="field grid">
+                    <label
+                        htmlFor="subject"
+                        class="col-12 mb-2 md:col-2 md:mb-0"
+                        >Subject</label
+                    >
+                    <div class="col-12 md:col-10">
+                        <input
+                            pInputText
+                            id="subject"
+                            type="text"
+                            [ngClass]="{
+                                'ng-invalid ng-dirty': IsInvalid('subject')
+                            }"
+                            formControlName="subject"
+                        />
+                        <div *ngIf="IsInvalid('subject')" class="error-message">
+                            Please enter subject.
+                        </div>
+                    </div>
+                </div>
+                <div class="field grid">
+                    <label
+                        htmlFor="message"
+                        class="col-12 mb-2 md:col-2 md:mb-0"
+                        >Message</label
+                    >
+                    <div class="col-12 md:col-10">
+                        <textarea
+                            id="message"
+                            rows="4"
+                            cols="30"
+                            pInputTextarea
+                            formControlName="message"
+                        ></textarea>
+                    </div>
+                </div>
+                <button
+                    pButton
+                    label="Submit"
+                    [disabled]="ContactForm.invalid"
+                ></button>
+            </form>
+        </div>
+    </div>
+    <div class="col-5">
+        <div class="card p-fluid">
+            <div class="field grid">
+                <label htmlFor="name3" class="col-12 mb-2 md:col-2 md:mb-0"
+                    >Name:</label
+                >
+                <div class="col-12 md:col-10">
+                    <b>Video Sphere Inc</b>
+                </div>
+            </div>
+            <div class="field grid">
+                <label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0"
+                    >Contact:</label
+                >
+                <div class="col-12 md:col-10">
+                    <b>(123)-123-1234</b>
+                </div>
+            </div>
+            <div class="field grid">
+                <label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0"
+                    >Email:</label
+                >
+                <div class="col-12 md:col-10">
+                    <b>support@videosphere.com</b>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

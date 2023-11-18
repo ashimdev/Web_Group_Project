@@ -1,0 +1,53 @@
+<div class="grid">
+    <div class="col-12 md:col-8">
+        <div class="card p-fluid">
+            <h5>Video</h5>
+            <form [formGroup]="videoForm" (ngSubmit)="onClickSubmitForm()">
+                <div class="field grid">
+                    <label htmlFor="videoName" class="col-12 mb-3 md:col-3 md:mb-0">Video Name</label>
+                    <div class="col-12 md:col-9">
+                        <input pInputText id="videoName" type="text" [ngClass]="{
+                            'ng-invalid ng-dirty': isInvalid('videoName')
+                        }" formControlName="videoName" />
+                        <div *ngIf="isInvalid('videoName')" class="error-message">
+                            Please enter a valid video name.
+                        </div>
+                    </div>
+                </div>
+                <div class="field grid">
+                    <label class="col-12 mb-3 md:col-3 md:mb-0">Upload Video</label>
+                    <div class="col-12 md:col-9">
+                        <input type="file" (change)="onFileSelected($event)" />
+                        <div *ngIf="videoForm.get('videoFile').invalid && videoForm.get('videoFile').touched" class="error-message">
+                            Please select a video file.
+                        </div>
+                    </div>
+                </div>
+                <div class="field grid">
+                    <label htmlFor="videoDescription" class="col-12 mb-3 md:col-3 md:mb-0">Video Description</label>
+                    <div class="col-12 md:col-9">
+                        <textarea pInputTextarea id="videoDescription" [ngClass]="{
+                            'ng-invalid ng-dirty': isInvalid('videoDescription')
+                        }" formControlName="videoDescription"></textarea>
+                        <div *ngIf="isInvalid('videoDescription')" class="error-message">
+                            Please enter a valid video description.
+                        </div>
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="col-4">
+                        <button pButton pRipple type="submit" [disabled]="videoForm.invalid" [label]="videoID ? 'Update' : 'Create'"></button>
+                    </div>
+                    <div class="col-4">
+                        <button pButton pRipple type="button" label="Cancel" (click)="onClickCancelButton()" class="p-button-secondary"></button>
+                    </div>
+                    <!-- <div class="col-4">
+                        <p-toast></p-toast>
+                        <p-confirmPopup key="delete"></p-confirmPopup>
+                        <button pButton pRipple type="button" label="Delete" (click)="onClickDeleteButton($event)" class="p-button-danger"></button>
+                    </div> -->
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="grid" *ngIf="!LoadingPage">
+    <div class="col-12 md:col-8">
+        <div class="card p-fluid">
+            <h5>{{VideoTitle}}</h5>
+            <ng-container *ngIf="!LoadingVideo">
+                <video-player autoplay [VideoURL]="VideoURL"></video-player>
+            </ng-container>
+        </div>
+    </div>
+    <div class="col-4">
+
+        <p-listbox [options]="VideoList" [(ngModel)]="SelectedVideo" (onChange)="OnChange($event?.value?.videoURL, $event?.value?.videoName)"
+            optionLabel="videoName" [style]="{'width':'15rem'}"></p-listbox>
+    </div>
+</div>
