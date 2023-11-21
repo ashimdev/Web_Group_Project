@@ -22,11 +22,12 @@ export class AuthInterceptor implements HttpInterceptor {
             return next.handle(request);
         }
 
-        
+        if (request.url.includes("centennial-video-source.s3.amazonaws.com")) {
+            return next.handle(request);
+        }        
 
         // Get the access token from your authentication service
         const accessToken = this._cognitoService.getAccessToken();
-        console.warn(accessToken);
 
         // Clone the request and add the "x-access-token" header
         const modifiedRequest = request.clone({

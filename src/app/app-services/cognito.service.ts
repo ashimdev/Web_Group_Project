@@ -20,12 +20,21 @@ export class CognitoService {
   private authenticationSubject: BehaviorSubject<any>;
   congitoUser = new BehaviorSubject(null);
   userDetail: any = null;
+
   constructor() {
     Amplify.configure({
       Auth: environment.cognito,
     });
 
     this.authenticationSubject = new BehaviorSubject<boolean>(false);
+  }
+
+  public isUserSingedIn(): boolean {
+    return this.userDetail == null ? false : true;
+  }
+
+  public isAdminUser(): boolean {
+    return this.userDetail?.username == "centennialadmin" ? true : false;
   }
 
   public signUp(user: IUser): Promise<any> {
@@ -89,6 +98,7 @@ export class CognitoService {
   public signOut(): Promise<any> {
     return Auth.signOut()
     .then(() => {
+      this.userDetail = null;
       this.authenticationSubject.next(false);
     });
   }
@@ -110,10 +120,7 @@ export class CognitoService {
     }
   }
 
-  public getUser(): Promise<any> {
-    return Auth.currentUserInfo();
-  }
-
+  
   public updateUser(user: IUser): Promise<any> {
     return Auth.currentUserPoolUser()
     .then((cognitoUser: any) => {

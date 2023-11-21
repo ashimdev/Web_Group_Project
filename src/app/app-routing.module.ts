@@ -15,6 +15,7 @@ import { UserEditPageComponent } from './user-edit-page/user-edit-page.component
 import { LearningVideosComponent } from './learning-videos/learning-videos.component';
 import { LearningVideoItemsComponent } from './learning-video-items/learning-video-items.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { AdminAuthGuard } from './app-guards/admin-auth.guard';
 
 @NgModule({
     imports: [
@@ -27,13 +28,14 @@ import { SignUpComponent } from './sign-up/sign-up.component';
             { path: 'contact', component: ContactComponent },
             {
                 path: 'learningVideos',
+                canActivate: [AuthGuard],
                 children: [
                     { path: '', component: LearningVideosComponent },
                     { path: ':videoPlaylistID', component: LearningVideoItemsComponent }
                 ]
             },
             {
-                path: 'setting', canActivate: [AuthGuard],
+                path: 'setting', canActivate: [AuthGuard, AdminAuthGuard],
                 children: [
                     {
                         path: 'video',
