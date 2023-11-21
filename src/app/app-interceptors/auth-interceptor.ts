@@ -7,27 +7,31 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserService } from '../app-services/user.service';
+import { CognitoService } from '../app-services/cognito.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-    constructor(private _userService: UserService) { }
+    constructor(private _cognitoService: CognitoService) { }
 
     intercept(
         request: HttpRequest<any>,
         next: HttpHandler
     ): Observable<HttpEvent<any>> {
 
-        if (!request.url.includes("/businessContact")) {
+        if (!this._cognitoService.userDetail) {
             return next.handle(request);
         }
 
+        
+
         // Get the access token from your authentication service
-        const accessToken = this._userService.GetAccessToken();
+        const accessToken = this._cognitoService.getAccessToken();
+        console.warn(accessToken);
 
         // Clone the request and add the "x-access-token" header
         const modifiedRequest = request.clone({
             headers: request.headers.set(
-                "x-access-token",
+                "Authorization",
                 `${accessToken}`
             )
         });

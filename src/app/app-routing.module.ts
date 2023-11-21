@@ -14,12 +14,14 @@ import { VideoPlaylistEditPageComponent } from './video-playlist-edit-page/video
 import { UserEditPageComponent } from './user-edit-page/user-edit-page.component';
 import { LearningVideosComponent } from './learning-videos/learning-videos.component';
 import { LearningVideoItemsComponent } from './learning-video-items/learning-video-items.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
     imports: [
         RouterModule.forRoot([
             { path: "", redirectTo: "home", pathMatch: 'full' },
             { path: 'login', component: LoginComponent },
+            { path: 'signup', component: SignUpComponent },
             { path: 'home', component: HomeComponent },
             { path: 'aboutMe', component: AboutMeComponent },
             { path: 'contact', component: ContactComponent },

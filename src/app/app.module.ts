@@ -48,6 +48,7 @@ import { VideoPlaylistEditPageComponent } from './video-playlist-edit-page/video
 import { UserEditPageComponent } from './user-edit-page/user-edit-page.component';
 import { LearningVideosComponent } from './learning-videos/learning-videos.component';
 import { LearningVideoItemsComponent } from './learning-video-items/learning-video-items.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
     declarations: [
@@ -67,7 +68,8 @@ import { LearningVideoItemsComponent } from './learning-video-items/learning-vid
         VideoPlaylistEditPageComponent,
         UserEditPageComponent,
         LearningVideosComponent,
-        LearningVideoItemsComponent
+        LearningVideoItemsComponent,
+        SignUpComponent
     ],
     imports: [
         // Angular Imports

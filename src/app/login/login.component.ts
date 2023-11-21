@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { UserService } from '../app-services/user.service';
-import { User } from '../interfaces/user.interface';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { CognitoService, IUser } from '../app-services/cognito.service';
 
 @Component({
   selector: 'app-login',
@@ -13,35 +12,32 @@ export class LoginComponent {
   public email: string = '';
   public password: string = '';
 
-  constructor(private _userService: UserService, private _router: Router, private _messageService: MessageService) { }
+  constructor(private _cognitoService: CognitoService,
+              private _router: Router,
+               private _messageService: MessageService) { }
 
   public OnClickLoginButton() {
-    const user: User = this.getUser();
-    this.login(user);
+    const user: IUser = this.getUser();
+    this.signIn(user);
   }
 
-  private login(user: User) {
-    this._userService.Login(user)
-    .subscribe({
-      next: () => {
-        this._router.navigate(['./businessContact']);
-      },
-      error: (err) => {
-        console.error(err);
-        this.showErrorViaToast();
-      }
+  public signIn(user: IUser): void {
+    this._cognitoService.signIn(user)
+    .then(() => {
+      this._router.navigate(['/home']);
+    }).catch((err) => {
+          console.error(err);
+          this.showErrorViaToast();
     });
-
   }
 
-  private getUser(): User {
-    return {
-      firstName: '',
-      lastName: '',
-      email: this.email,
-      password: this.password,
-      token: ''
-    }
+  
+  private getUser(): IUser {
+    const user = {} as IUser;
+    user.email = this.email;
+    user.password = this.password;
+    
+    return user;
   }
 
   private showErrorViaToast() {
