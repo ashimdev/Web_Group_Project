@@ -1,0 +1,20 @@
+<div id="video-gallery">
+    <div class="col-12">
+        <div class="card">
+            <div class="grid">
+                <div class="col-4" *ngFor="let video of VideoPlaylistList">
+                    <div class="flex justify-content-center">
+                        <div style="cursor: pointer">
+                            <p-card (click)="OnClickPlaylist(video.videoPlaylistID)" [header]="video.videoPlaylistName" [style]="{ width: '300px', height: '220px' }">
+                                <ng-template pTemplate="header">
+                                    <p-image [src]="video.thumbnailURL" width="250" height="150px"></p-image>
+                                </ng-template>
+                            </p-card>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

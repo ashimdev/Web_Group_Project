@@ -1,0 +1,70 @@
+<div class="grid">
+    <div class="col-12 md:col-8">
+        <div class="card p-fluid">
+            <h5>User</h5>
+            <form [formGroup]="userForm" (ngSubmit)="onClickSubmitForm()">
+                <div class="field grid">
+                    <label htmlFor="userEmail" class="col-12 mb-3 md:col-3 md:mb-0">User Email</label>
+                    <div class="col-12 md:col-9">
+                        <input pInputText id="userEmail" type="text" [ngClass]="{
+                            'ng-invalid ng-dirty': isInvalid('userEmail')
+                        }" formControlName="userEmail" />
+                        <div *ngIf="isInvalid('userEmail')" class="error-message">
+                            Please enter a valid user email.
+                        </div>
+                    </div>
+                </div>
+                <div class="field grid">
+                    <label htmlFor="userTypeCode" class="col-12 mb-3 md:col-3 md:mb-0">User Type</label>
+                    <div class="col-12 md:col-9">
+                        <p-dropdown id="userTypeCode" [options]="userTypeOptions" placeholder="Select"
+                            optionValue="value" [ngClass]="{
+                                'ng-invalid ng-dirty': isInvalid('userTypeCode')
+                            }" formControlName="userTypeCode"></p-dropdown>
+                        <div *ngIf="isInvalid('userTypeCode')" class="error-message">
+                            Please select a user type.
+                        </div>
+                    </div>
+                </div>
+                <div class="field grid">
+                    <label htmlFor="password" class="col-12 mb-3 md:col-3 md:mb-0">Password</label>
+                    <div class="col-12 md:col-9">
+                        <p-password id="password" [feedback]="false" [toggleMask]="true" [ngClass]="{
+                            'ng-invalid ng-dirty': isInvalid('password')
+                        }" formControlName="password"></p-password>
+                        <div *ngIf="isInvalid('password')" class="error-message">
+                            Please enter a valid password.
+                        </div>
+                    </div>
+                </div>
+                <div class="field grid">
+                    <label htmlFor="userDescription" class="col-12 mb-3 md:col-3 md:mb-0">User Description</label>
+                    <div class="col-12 md:col-9">
+                        <input pInputTextarea id="userDescription" [maxLength]="200" [ngClass]="{
+                            'ng-invalid ng-dirty': isInvalid('userDescription')
+                        }" formControlName="userDescription">
+                        <div *ngIf="isInvalid('userDescription')" class="error-message">
+                            Please enter a valid user description.
+                        </div>
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="col-4">
+                        <button pButton pRipple type="submit" [disabled]="userForm.invalid"
+                            [label]="userID ? 'Update' : 'Create'"></button>
+                    </div>
+                    <div class="col-4">
+                        <button pButton pRipple type="button" label="Cancel" (click)="onClickCancelButton()"
+                            class="p-button-secondary"></button>
+                    </div>
+                    <!-- <div class="col-4">
+                        <p-toast></p-toast>
+                        <p-confirmPopup key="delete"></p-confirmPopup>
+                        <button pButton pRipple type="button" label="Delete" (click)="onClickDeleteButton($event)"
+                            class="p-button-danger"></button>
+                    </div> -->
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
