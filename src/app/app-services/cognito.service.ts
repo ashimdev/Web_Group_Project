@@ -53,14 +53,14 @@ export class CognitoService {
 
   newPasswword(user: IUser) {
     // subscribe to cognito user (behaviour subject) and use the value it returned.
-        // this.congitoUser.subscribe((value) => {
-        //   console.warn(value);
-        //   Auth.completeNewPassword(value,  "Centennial2!", [])
-        //     .then((data) => {
-        //      console.log(data);
-        //     })
-        //     .catch((err) => console.error('Error', err));
-        // });
+        this.congitoUser.subscribe((value) => {
+          console.warn(value);
+          Auth.completeNewPassword(value,  "Centennial2!", [])
+            .then((data) => {
+             console.log(data);
+            })
+            .catch((err) => console.error('Error', err));
+        });
     }
 
     public getAccessToken() {
@@ -118,6 +118,10 @@ export class CognitoService {
         return false;
       });
     }
+  }
+
+  public getUser(): Promise<any> {
+    return Auth.currentUserInfo();
   }
 
   
