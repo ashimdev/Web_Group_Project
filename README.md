@@ -29,7 +29,7 @@ The Video Learning Platform is an innovative project aimed at creating a collabo
 
 To run the Angular project in development mode, follow these steps:
 
-1. Navigate to the `frontend/` directory.
+1. Navigate to the `angular/` directory.
 2. Install project dependencies using the command: `npm install`.
 3. Start the development server with: `ng serve`.
 4. Open your web browser and go to `http://localhost:4200/` to access the running Angular application.
